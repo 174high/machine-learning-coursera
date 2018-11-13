@@ -55,10 +55,11 @@ print prediction
 print "shape of prediciton ="
 print(prediction.shape)
 
+y.resize((len(y),1))
 
 print "shape of y ="
 
-y.resize((97,1))
+print y.shape
 
 error=prediction-y 
 
@@ -69,12 +70,18 @@ print error
 print "shape of error="
 print(error.shape)
 
+error=np.power(error,2)
+
+print error
 
 
+total=sum(map(sum,error))
 
+print total 
 
+m=len(y)
 
+print m 
 
-
-
+print total/(2*m)
 
