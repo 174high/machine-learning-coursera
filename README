@@ -2,3 +2,9 @@
 
 并且使用 Python 和 C++ 实现出来 
 
+运行 ex1 ex2 ex* 等等  之前先运行 setenv('GNUTERM','x11')  
+
+否则不能出现图像 
+
+
+
