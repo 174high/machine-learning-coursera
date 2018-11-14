@@ -98,11 +98,10 @@ print computeCost(new_X,y,theta)
 
 gradientDescent(new_X,y,theta,alpha,iterations)
 
+a=np.arange(0,25)
+b=theta[0]+theta[1]*a
 
+plt.plot(a,b)
 
-
-
-
-
-
+plt.show()
 
