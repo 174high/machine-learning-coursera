@@ -21,12 +21,24 @@ grad = zeros(size(theta));
 %
 
 prediction=X*theta;
+
+[i,j]=size(prediction); 
+
+fprintf("%%%% i=%d ,j=%d /n",i,j);
+
 result=sigmoid(prediction);
+
+fprintf("%%%% i=%d ,j=%d /n",i,j);
 
 a1=log(result);
 a2=log(1-result); 
 
+b1=y.*a1 ;
+b2=(1-y).*a2 ;
 
+c1=-b1-b2 ;
+
+J=sum(c1)/m;
 
 #b1=a1*y; 
 

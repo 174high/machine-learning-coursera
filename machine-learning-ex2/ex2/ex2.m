@@ -35,11 +35,15 @@ fprintf(['Plotting data with + indicating (y = 1) examples and o ' ...
 
 plotData(X, y);
 
+fprintf("****test****\n");
+
 % Put some labels 
 hold on;
 % Labels and Legend
 xlabel('Exam 1 score')
 ylabel('Exam 2 score')
+
+fprintf("****test2****\n");
 
 % Specified in plot order
 legend('Admitted', 'Not admitted')
@@ -57,11 +61,19 @@ pause;
 %  Setup the data matrix appropriately, and add ones for the intercept term
 [m, n] = size(X);
 
+fprintf("***** m=%d,n=%d ",m,n);
+
 % Add intercept term to x and X_test
 X = [ones(m, 1) X];
 
+[a,b] = size(y);
+
+fprintf("**** a=%d,b=%d \n",a,b);
+
 % Initialize fitting parameters
 initial_theta = zeros(n + 1, 1);
+
+fprintf("**** i=%d,j=%d ",n+1,1);
 
 % Compute and display initial cost and gradient
 [cost, grad] = costFunction(initial_theta, X, y);
