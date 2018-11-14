@@ -22,9 +22,13 @@ grad = zeros(size(theta));
 
 prediction=X*theta;
 result=sigmoid(prediction);
+
 a1=log(result);
 a2=log(1-result); 
-b1=a1*y; 
+
+
+
+#b1=a1*y; 
 
 
 % =============================================================
