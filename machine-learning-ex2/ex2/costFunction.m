@@ -28,7 +28,7 @@ fprintf("%%%% i=%d ,j=%d /n",i,j);
 
 result=sigmoid(prediction);
 
-fprintf("%%%% i=%d ,j=%d /n",i,j);
+fprintf("%%%% i=%d ,j=%d \n",i,j);
 
 a1=log(result);
 a2=log(1-result); 
@@ -41,6 +41,12 @@ c1=-b1-b2 ;
 J=sum(c1)/m;
 
 #b1=a1*y; 
+
+[a,b]=size(result-y); 
+
+fprintf("%%%% a=%d ,b=%d \n",a,b);
+
+grad=(X'*(result-y))/m ;
 
 
 % =============================================================
