@@ -11,13 +11,47 @@ def computeCost(X,y,theta):
 
     y.resize((m,1))
 
-    prediction=np.dot(X.T,theta)
+    return sum(map(sum,np.power((np.dot(X.T,theta)-y),2)))/(2*m)
 
-    error=np.power(prediction-y,2)
 
-    total=sum(map(sum,error))
+def gradientDescent(X,y,theta,alpha,num_iters):
 
-    return total/(2*m)
+    m=len(y)
+
+    for i in range(num_iters):
+
+	prediction=np.dot(X.T,theta)
+
+	gredient=prediction-y 
+
+	print "theta[0],thata[1] cost"
+
+	print theta[0],theta[1],computeCost(X,y,theta)
+
+	theta[0]=theta[0]-alpha/m*sum(map(sum,gredient))
+
+	print "shape of X , ,prediction-y  "
+
+	x=X[1]; 
+
+	x.resize((m,1))
+
+	print x.shape
+	print gredient.shape
+
+	gredient=np.dot(x.T,prediction-y)
+
+	print "after calculate "
+
+	print gredient.shape
+
+	theta[1]=theta[1]-alpha/m*gredient
+
+	print "theta[0],thata[1] cost"
+
+	print theta[0],theta[1] ,computeCost(X,y,theta)
+
+
 
 #data = np.loadtxt('ex1data1.txt', delimiter=',', skiprows=1)
 # skiprows=1 表示忽略第一行数据
@@ -61,6 +95,12 @@ y=np.array(y)
 print new_X
 
 print computeCost(new_X,y,theta)
+
+gradientDescent(new_X,y,theta,alpha,iterations)
+
+
+
+
 
 
 
