@@ -15,12 +15,38 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
+prediction=X*theta;
+
+[a,b]=size(prediction);
+
+fprintf("prediction  a=%d, b=%d ",a,b);
+
+result=sigmoid(prediction);
+
+[a,b]=size(result);
+
+fprintf("result  a=%d, b=%d ",a,b);
+
+disp(result); 
+
+q=0;
+w=0; 
+
+for i=1:m
+    if result(i)>=0.5 
+    	p(i)=1 ;
+        q=q+1;    
+    else 
+	p(i)=0 ;
+        w=w+1;  
+    end 
+end
 
 
+fprintf("q:1 w:0  q=%d, w=%d ",q,w);
 
 
-
-
+ 
 % =========================================================================
 
 
