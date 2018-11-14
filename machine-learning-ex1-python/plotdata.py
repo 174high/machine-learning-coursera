@@ -3,6 +3,22 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 
+
+
+def computeCost(X,y,theta):
+
+    m=len(y)
+
+    y.resize((m,1))
+
+    prediction=np.dot(X.T,theta)
+
+    error=np.power(prediction-y,2)
+
+    total=sum(map(sum,error))
+
+    return total/(2*m)
+
 #data = np.loadtxt('ex1data1.txt', delimiter=',', skiprows=1)
 # skiprows=1 表示忽略第一行数据
 
@@ -39,49 +55,14 @@ print one
 
 #new_X=[[0]*len(y)]*len(y) 
 
-print "new x="
-#print new_X
-
 new_X=np.array((one,X))
 y=np.array(y)
 
 print new_X
 
-
-prediction=np.dot(new_X.T,theta) 
-
-print prediction 
-
-print "shape of prediciton ="
-print(prediction.shape)
-
-y.resize((len(y),1))
-
-print "shape of y ="
-
-print y.shape
-
-error=prediction-y 
-
-print "error="
-
-print error 
-
-print "shape of error="
-print(error.shape)
-
-error=np.power(error,2)
-
-print error
+print computeCost(new_X,y,theta)
 
 
-total=sum(map(sum,error))
 
-print total 
 
-m=len(y)
-
-print m 
-
-print total/(2*m)
 
