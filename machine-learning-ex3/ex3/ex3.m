@@ -34,11 +34,19 @@ fprintf('Loading and Visualizing Data ...\n')
 
 load('ex3data1.mat'); % training data stored in arrays X, y
 m = size(X, 1);
+[i,j]=size(X);
+
+
+fprintf("m= %d \n",m);
+fprintf("i=%d,j=%d",i,j);
 
 % Randomly select 100 data points to display
-rand_indices = randperm(m);
-sel = X(rand_indices(1:100), :);
+%rand_indices = randperm(m);
+%sel = X(rand_indices(1:100), :);
 
+%disp();
+
+sel = X([1 501],:);
 displayData(sel);
 
 fprintf('Program paused. Press enter to continue.\n');
@@ -57,6 +65,10 @@ fprintf('\nTesting lrCostFunction() with regularization');
 
 theta_t = [-2; -1; 1; 2];
 X_t = [ones(5,1) reshape(1:15,5,3)/10];
+
+fprintf("X_t= \n");
+disp(X_t);
+
 y_t = ([1;0;1;0;1] >= 0.5);
 lambda_t = 3;
 [J grad] = lrCostFunction(theta_t, X_t, y_t, lambda_t);
