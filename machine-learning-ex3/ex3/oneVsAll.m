@@ -11,6 +11,8 @@ function [all_theta] = oneVsAll(X, y, num_labels, lambda)
 m = size(X, 1);
 n = size(X, 2);
 
+fprintf("onevsall m=%d,n=%d ",m,n); 
+
 % You need to return the following variables correctly 
 all_theta = zeros(num_labels, n + 1);
 
@@ -49,16 +51,28 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
+%c=1:10; 
 
 
 
+for i=1:num_labels 
+ 
+initial_theta = zeros(n + 1, 1);
 
+options = optimset('GradObj', 'on', 'MaxIter', 50);
 
+[theta] = ...
+         fmincg (@(t)(lrCostFunction(t, X, (y == i), lambda)), ...
+                 initial_theta, options);
 
+all_theta(i,:)=theta; 
 
+end 
 
+[a,b]=size(all_theta); 
 
-
+fprintf(" m =%d,n=%d ",m,n);
+fprintf(" a =%d,b=%d ",a,b);
 
 % =========================================================================
 

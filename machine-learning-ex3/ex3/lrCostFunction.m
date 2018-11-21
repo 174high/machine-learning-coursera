@@ -42,11 +42,11 @@ prediction=X*theta;
 
 [i,j]=size(prediction);
 
-fprintf("%%%% i=%d ,j=%d /n",i,j);
+%fprintf("%%%% i=%d ,j=%d /n",i,j);
 
 result=sigmoid(prediction);
 
-fprintf("%%%% i=%d ,j=%d \n",i,j);
+%fprintf("%%%% i=%d ,j=%d \n",i,j);
 
 a1=log(result);
 a2=log(1-result);
@@ -66,7 +66,7 @@ J=sum(c1)/m+(lambda*sum(theta_t.*theta_t))/(2*m);
 
 [a,b]=size(result-y);
 
-fprintf("%%%% a=%d ,b=%d \n",a,b);
+%fprintf("%%%% a=%d ,b=%d \n",a,b);
 
 
 grad=(X'*(result-y))/m+(lambda/m)*theta;
@@ -77,7 +77,7 @@ grad_t=(X'*(result-y))/m;
 
 [a,b]=size(grad);
 
-fprintf("&&&&& a=%d,b=%d &&&&\n ",a,b);
+%fprintf("&&&&& a=%d,b=%d &&&&\n ",a,b);
 
 grad(1)=grad_t(1);
 

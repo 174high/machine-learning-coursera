@@ -46,6 +46,8 @@ fprintf("i=%d,j=%d",i,j);
 
 %disp();
 
+fprintf(" y(1)= %d y(501)=%d y(1001)=%d \n",y(1),y(501),y(1001));
+
 sel = X([1 501],:);
 displayData(sel);
 
