@@ -21,8 +21,36 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+X_t = [ones(m,1) X];
 
+[i,j]=size(X_t); 
+    
+fprintf("%%%%X_t= i=%d ,j=%d /n",i,j);
 
+[i,j]=size(Theta1);          
+    
+fprintf("%%%%T= i=%d ,j=%d /n",i,j);
+
+prediction1=X_t*Theta1';
+
+[i,j]=size(prediction1);
+
+fprintf("%%%% i=%d ,j=%d /n",i,j);
+
+result1=sigmoid(prediction1);
+
+result1_t=[ones(m,1) result1];
+
+prediction2=result1_t*Theta2'; 
+
+result2=sigmoid(prediction2);
+
+for i=1:m
+
+    [x,y]=max(result2(i,:))
+    p(i)=y;
+
+end 
 
 
 
