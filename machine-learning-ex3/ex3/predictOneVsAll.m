@@ -30,11 +30,28 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+[i,j]=size(X);
 
+fprintf("%%%%x= i=%d ,j=%d /n",i,j);
 
+[i,j]=size(all_theta);
 
+fprintf("%%%%t= i=%d ,j=%d /n",i,j);
 
+prediction=X*all_theta';
 
+[i,j]=size(prediction);
+
+fprintf("%%%% i=%d ,j=%d /n",i,j);
+
+result=sigmoid(prediction);
+
+for i=1:m 
+
+    [x,y]=max(result(i,:))	     
+    p(i)=y; 
+
+end 
 
 % =========================================================================
 
