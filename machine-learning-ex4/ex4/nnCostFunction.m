@@ -16,11 +16,20 @@ function [J grad] = nnCostFunction(nn_params, ...
 
 % Reshape nn_params back into the parameters Theta1 and Theta2, the weight matrices
 % for our 2 layer neural network
+
+%[a,b]=size(nn_params);
+%fprintf("size of nn_param =%d,%d  \n",a,b);
+
 Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
                  hidden_layer_size, (input_layer_size + 1));
 
 Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
                  num_labels, (hidden_layer_size + 1));
+
+[a,b]=size(Theta1);
+[c,d]=size(Theta2); 
+fprintf("size of theta1 =%d,%d size of theta2=%d,%d \n",a,b,c,d); 
+
 
 % Setup some useful variables
 m = size(X, 1);
@@ -62,23 +71,60 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+X=[ones(m,1 ) X];
+[a,b]=size(X);
+[c,d]=size(Theta1);
+fprintf("size of X= %d,%d theta=%d,%d \n",a,b,c,d);
+
+prediction=sigmoid(X*Theta1') ;
+
+[a,b]=size(prediction);
+fprintf("size of prediciton=%d,%d \n",a,b);
+
+prediction=[ones(m,1) prediction];
+
+prediction2=sigmoid(prediction*Theta2'); 
+
+[a,b]=size(prediction2);
+fprintf("size of prediciton2=%d,%d \n",a,b);
 
 
+% -ylog(prediction2)-(1-y)log(1-prediction2)
+
+for i=1:1
+
+for j=1:1
+
+prediction2(i,j)
+
+end 
+
+end 
+
+sum=0 ;
+
+fprintf(" m=%d,num_labels=%d \n",m,num_labels);
+
+for i=1:m 
+
+for j=1:num_labels
+
+        fprintf("prediction2(%d,%d)=%g y(%d)=%d \n",i,j,prediction2(i,j),i,y(i));
+    	
+	if j==y(i)
+	sum=sum-log(prediction2(i,j));
+	else
+	sum=sum-log(1-prediction2(i,j)); 
+        end 
+
+end 
+
+end 
 
 
+J=sum/m ; 
 
-
-
-
-
-
-
-
-
-
-
-
-
+fprintf(" J=%g \n",J);
 
 % -------------------------------------------------------------
 
