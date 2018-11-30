@@ -95,13 +95,13 @@ for i=1:1
 
 for j=1:1
 
-prediction2(i,j)
+%prediction2(i,j)
 
 end 
 
 end 
 
-sum=0 ;
+sum1=0 ;
 
 fprintf(" m=%d,num_labels=%d \n",m,num_labels);
 
@@ -109,22 +109,54 @@ for i=1:m
 
 for j=1:num_labels
 
-        fprintf("prediction2(%d,%d)=%g y(%d)=%d \n",i,j,prediction2(i,j),i,y(i));
+%        fprintf("prediction2(%d,%d)=%g y(%d)=%d \n",i,j,prediction2(i,j),i,y(i));
     	
 	if j==y(i)
-	sum=sum-log(prediction2(i,j));
+	sum1=sum1-log(prediction2(i,j));
 	else
-	sum=sum-log(1-prediction2(i,j)); 
+	sum1=sum1-log(1-prediction2(i,j)); 
         end 
 
 end 
 
 end 
 
+fprintf(" input=%d,hidden=%d \n",input_layer_size,hidden_layer_size);
 
-J=sum/m ; 
+sum2=0 ; 
+
+for i=1:hidden_layer_size 
+	sum2=sum2+sum(Theta1(i,:).^2);
+end 
+
+sum2=sum2-sum(Theta1(:,1).^2); 
+
+
+sum3=0 ; 
+
+for i=1:num_labels
+        sum3=sum3+sum(Theta2(i,:).^2);
+end 
+
+sum3=sum3-sum(Theta2(:,1).^2);
+
+
+J=sum1/m+(lambda/(2*m))*(sum2+sum3) ; 
+
+%J=sum1/m; 
+
 
 fprintf(" J=%g \n",J);
+
+
+
+
+
+
+
+
+
+
 
 % -------------------------------------------------------------
 
