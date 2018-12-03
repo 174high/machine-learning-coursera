@@ -17,8 +17,8 @@ g = zeros(size(z));
 
 
 
-
-
+a=(1.0 + exp(-z)).^2;
+g=exp(-z)./a ; 
 
 
 
