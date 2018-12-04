@@ -150,11 +150,30 @@ fprintf(" J=%g \n",J);
 
 
 
+for i=1:m 
+
+[a,b]=size(X);
+[c,d]=size(Theta1);
+fprintf("size of X= %d,%d theta=%d,%d \n",a,b,c,d);
+
+z2=X*Theta1'; 
+
+a2=sigmoid(X*Theta1') ;
+
+[a,b]=size(z2);
+[c,d]=size(a2);
+fprintf("size of z2= %d,%d a2=%d,%d \n",a,b,c,d);
 
 
 
 
 
+
+
+
+
+
+end 
 
 
 
