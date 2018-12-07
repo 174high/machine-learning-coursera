@@ -192,7 +192,7 @@ end
 
 
 Theta2_grad=Theta2_grad/m; 
-
+Theta1_grad=Theta1_grad/m;
 
 
 
