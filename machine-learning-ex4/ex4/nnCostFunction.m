@@ -181,34 +181,56 @@ a3=sigmoid(z3);
 
 tmp_error=zeros(num_labels); 
 
-for i=1:m
+%----------------------------------------------------------------------------
 
-tmp_error=((1:4)==y(i)) ; 
+for t=1:m
 
-error3=a3(i)-tmp_error; 
+tmp_error=((1:num_labels)==y(t)) ; 
+
+error3=a3(t)-tmp_error; 
 
 tmp=error3*Theta2;
 
-tmp_a2=a2(i,:).*(1-a2(i,:))
+tmp_a2=a2(t,:).*(1-a2(t,:))
 
 alpha=tmp.*tmp_a2
 
-alpha=alpha(:,2:end);
+error2=alpha(:,2:end);
 
 [a,b]=size(Theta2);
 [c,d]=size(error3);
 [e,f]=size(tmp);
-[g,h]=size(a2(i,:)); 
+[g,h]=size(a2(t,:)); 
 [i,j]=size(tmp_a2);
-[k,l]=size(alpha);
-fprintf(" Thate2=%d,%d:error3=%d,%d tmp=%d,%d a2(%d)=%d,%d tmp_a2=%d,%d alpha=%d,%d \n",a,b,c,d,e,f,i,g,h,i,j,k,l);
+[k,l]=size(error2);
+fprintf(" Thate2=%d,%d:error3=%d,%d tmp=%d,%d a2(%d)=%d,%d tmp_a2=%d,%d error2=%d,%d \n",a,b,c,d,e,f,i,g,h,i,j,k,l);
 
+tmp_r2=error3'*a2(t,:); 
 
+[a,b]=size(tmp_r2);
+fprintf(" tmp_r2=%d,%d \n",a,b);
 
+tmp_r1=error2'*X(t,:);     
+
+[a,b]=size(tmp_r1);
+fprintf(" tmp_r1=%d,%d \n",a,b);
+ 
+
+fprintf(" t=%d \n",t);
+
+[a,b]=size(Theta2_grad);
+[c,d]=size(Theta1_grad);
+fprintf("(%d) t2_g=%d,%d t1_g=%d,%d \n",t,a,b,c,d);
+
+Theta2_grad=tmp_r2+Theta2_grad;
+Theta1_grad=tmp_r1+Theta1_grad;
 
 end 
 
 
+Theta2_grad=Theta2_grad/m; 
+
+Theta1_grad=Theta1_grad/m;
 
 
 %end 
