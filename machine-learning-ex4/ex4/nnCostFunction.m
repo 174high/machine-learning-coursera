@@ -76,30 +76,22 @@ X=[ones(m,1 ) X];
 [c,d]=size(Theta1);
 fprintf("size of X= %d,%d theta=%d,%d \n",a,b,c,d);
 
-prediction=sigmoid(X*Theta1') ;
+z2=X*Theta1';
 
-[a,b]=size(prediction);
-fprintf("size of prediciton=%d,%d \n",a,b);
+a2=sigmoid(z2) ;
 
-prediction=[ones(m,1) prediction];
+[a,b]=size(a2);
+fprintf("size of a2=%d,%d \n",a,b);
 
-prediction2=sigmoid(prediction*Theta2'); 
+a2=[ones(m,1) a2];
 
-[a,b]=size(prediction2);
-fprintf("size of prediciton2=%d,%d \n",a,b);
+z3=a2*Theta2'; 
 
+a3=sigmoid(z3); 
 
-% -ylog(prediction2)-(1-y)log(1-prediction2)
+[a,b]=size(a3);
+fprintf("size of a3=%d,%d \n",a,b);
 
-for i=1:1
-
-for j=1:1
-
-%prediction2(i,j)
-
-end 
-
-end 
 
 sum1=0 ;
 
@@ -109,12 +101,12 @@ for i=1:m
 
 for j=1:num_labels
 
-%        fprintf("prediction2(%d,%d)=%g y(%d)=%d \n",i,j,prediction2(i,j),i,y(i));
+%        fprintf("a3(%d,%d)=%g y(%d)=%d \n",i,ja3(i,j),i,y(i));
     	
 	if j==y(i)
-	sum1=sum1-log(prediction2(i,j));
+	sum1=sum1-log(a3(i,j));
 	else
-	sum1=sum1-log(1-prediction2(i,j)); 
+	sum1=sum1-log(1-a3(i,j)); 
         end 
 
 end 
@@ -150,35 +142,6 @@ fprintf(" J=%g \n",J);
 
 %------------------------------------------------------
 
-%for i=1:m 
-
-[a,b]=size(X);
-[c,d]=size(Theta1);
-%fprintf("size of X= %d,%d theta=%d,%d \n",a,b,c,d);
-
-z2=X*Theta1'; 
-
-a2=sigmoid(z2) ;
-
-[a,b]=size(z2);
-[c,d]=size(a2);
-%fprintf("size of z2= %d,%d a2=%d,%d \n",a,b,c,d);
-
-a2=[ones(m,1) a2]; 
-
-[c,d]=size(a2);
-fprintf("size of z2= %d,%d a2=%d,%d \n",a,b,c,d);
-
-z3=a2*Theta2' ;
-
-a3=sigmoid(z3);
-
-[a,b]=size(z3);
-[c,d]=size(a3);
-[e,f]=size(y); 
-[g,h]=size(Theta2);
-%fprintf("size of z3= %d,%d a3=%d,%d y=%d,%d theta=%d,%d \n",a,b,c,d,e,f,g,h);
-
 tmp_error=zeros(num_labels); 
 
 %----------------------------------------------------------------------------
@@ -187,53 +150,50 @@ for t=1:m
 
 tmp_error=((1:num_labels)==y(t)) ; 
 
-error3=a3(t)-tmp_error; 
+error3=a3(t,:)-tmp_error; 
+tmp_r2=error3'*a2(t,:); 
+
+[a,b]=size(error3);
+[c,d]=size(a2(t,:));
+fprintf(" error=%d,%d a2=%d,%d",a,b,c,d);
+
+[a,b]=size(tmp_r2);
+fprintf(" tmp_r2=%d,%d \n",a,b);
+
+fprintf(" t=%d \n",t);
+Theta2_grad=tmp_r2+Theta2_grad;
+
+%---------------------------------
 
 tmp=error3*Theta2;
 
 tmp_a2=a2(t,:).*(1-a2(t,:))
 
-alpha=tmp.*tmp_a2
+alpha=tmp.*tmp_a2 ;
 
 error2=alpha(:,2:end);
-
-[a,b]=size(Theta2);
-[c,d]=size(error3);
-[e,f]=size(tmp);
-[g,h]=size(a2(t,:)); 
-[i,j]=size(tmp_a2);
-[k,l]=size(error2);
-fprintf(" Thate2=%d,%d:error3=%d,%d tmp=%d,%d a2(%d)=%d,%d tmp_a2=%d,%d error2=%d,%d \n",a,b,c,d,e,f,i,g,h,i,j,k,l);
-
-tmp_r2=error3'*a2(t,:); 
-
-[a,b]=size(tmp_r2);
-fprintf(" tmp_r2=%d,%d \n",a,b);
 
 tmp_r1=error2'*X(t,:);     
 
 [a,b]=size(tmp_r1);
 fprintf(" tmp_r1=%d,%d \n",a,b);
  
-
 fprintf(" t=%d \n",t);
 
 [a,b]=size(Theta2_grad);
 [c,d]=size(Theta1_grad);
 fprintf("(%d) t2_g=%d,%d t1_g=%d,%d \n",t,a,b,c,d);
 
-Theta2_grad=tmp_r2+Theta2_grad;
 Theta1_grad=tmp_r1+Theta1_grad;
+%----------------------------------------------
+
 
 end 
 
 
 Theta2_grad=Theta2_grad/m; 
 
-Theta1_grad=Theta1_grad/m;
 
-
-%end 
 
 
 
