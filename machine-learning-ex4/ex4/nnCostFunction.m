@@ -103,7 +103,7 @@ end
 
 sum1=0 ;
 
-fprintf(" m=%d,num_labels=%d \n",m,num_labels);
+%fprintf(" m=%d,num_labels=%d \n",m,num_labels);
 
 for i=1:m 
 
@@ -121,7 +121,7 @@ end
 
 end 
 
-fprintf(" input=%d,hidden=%d \n",input_layer_size,hidden_layer_size);
+%fprintf(" input=%d,hidden=%d \n",input_layer_size,hidden_layer_size);
 
 sum2=0 ; 
 
@@ -148,32 +148,68 @@ J=sum1/m+(lambda/(2*m))*(sum2+sum3) ;
 
 fprintf(" J=%g \n",J);
 
+%------------------------------------------------------
 
-
-for i=1:m 
+%for i=1:m 
 
 [a,b]=size(X);
 [c,d]=size(Theta1);
-fprintf("size of X= %d,%d theta=%d,%d \n",a,b,c,d);
+%fprintf("size of X= %d,%d theta=%d,%d \n",a,b,c,d);
 
 z2=X*Theta1'; 
 
-a2=sigmoid(X*Theta1') ;
+a2=sigmoid(z2) ;
 
 [a,b]=size(z2);
 [c,d]=size(a2);
+%fprintf("size of z2= %d,%d a2=%d,%d \n",a,b,c,d);
+
+a2=[ones(m,1) a2]; 
+
+[c,d]=size(a2);
 fprintf("size of z2= %d,%d a2=%d,%d \n",a,b,c,d);
 
+z3=a2*Theta2' ;
 
+a3=sigmoid(z3);
 
+[a,b]=size(z3);
+[c,d]=size(a3);
+[e,f]=size(y); 
+[g,h]=size(Theta2);
+%fprintf("size of z3= %d,%d a3=%d,%d y=%d,%d theta=%d,%d \n",a,b,c,d,e,f,g,h);
 
+tmp_error=zeros(num_labels); 
 
+for i=1:m
 
+tmp_error=((1:4)==y(i)) ; 
+
+error3=a3(i)-tmp_error; 
+
+tmp=error3*Theta2;
+
+tmp_a2=a2(i,:).*(1-a2(i,:))
+
+alpha=tmp.*tmp_a2
+
+[a,b]=size(Theta2);
+[c,d]=size(error3);
+[e,f]=size(tmp);
+[g,h]=size(a2(i,:)); 
+[i,j]=size(tmp_a2);
+[k,l]=size(alpha);
+fprintf(" Thate2=%d,%d:error3=%d,%d tmp=%d,%d a2(%d)=%d,%d tmp_a2=%d,%d alpha=%d,%d \n",a,b,c,d,e,f,i,g,h,i,j,k,l);
 
 
 
 
 end 
+
+
+
+
+%end 
 
 
 
