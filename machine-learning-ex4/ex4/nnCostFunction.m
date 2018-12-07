@@ -193,6 +193,8 @@ tmp_a2=a2(i,:).*(1-a2(i,:))
 
 alpha=tmp.*tmp_a2
 
+alpha=alpha(:,2:end);
+
 [a,b]=size(Theta2);
 [c,d]=size(error3);
 [e,f]=size(tmp);
