@@ -21,7 +21,25 @@ grad = zeros(size(theta));
 
 
 
+[a,b]=size(X); 
+[c,d]=size(theta); 
+[e,f]=size(y); 
+[g,h]=size(X*theta); 
+fprintf(" X=%d,%d theta=%d,%d y=%d,%d x*theta=%d,%d \n",a,b,c,d,e,f,g,h);
 
+prediction=sum((X*theta-y).^2)  ;  
+
+[a,b]=size(prediction); 
+
+fprintf("prediction=%d,%d \n",a,b);
+
+theta.^2 
+
+sum(theta.^2) 
+
+theta1=theta(1,:); 
+
+J =prediction/(2*m)+((sum(theta1.^2))*lambda)/(2*m) ;   
 
 
 
