@@ -37,8 +37,12 @@ theta.^2
 
 sum(theta.^2) 
 
-theta1=theta(1,:); 
+theta1=theta(2:end,:);
 
+
+[a,b]=size(theta); 
+[c,d]=size(theta1);
+fprintf(" thata=%d,%d theta1=%d,%d \n",a,b,c,d);
 J =prediction/(2*m)+((sum(theta1.^2))*lambda)/(2*m) ;   
 
 
