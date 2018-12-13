@@ -44,9 +44,16 @@ J =prediction/(2*m)+((sum(theta1.^2))*lambda)/(2*m) ;
 
 
 
+grad=(X'*(X*theta-y))/m + (lambda*theta)/m;  
 
+grad(1)=grad(1)- ((lambda*theta)/m)(1) ;
 
-
+[a,b]=size(X*theta-y);
+[c,d]=size(X');
+[e,f]=size(grad);
+fprintf(" t1=%d,%d \n",a,b);
+fprintf(" t2=%d,%d \n",c,d);
+fprintf(" t3=%d,%d \n",e,f); 
 
 % =========================================================================
 
