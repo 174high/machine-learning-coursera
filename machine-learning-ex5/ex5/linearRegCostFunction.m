@@ -25,24 +25,24 @@ grad = zeros(size(theta));
 [c,d]=size(theta); 
 [e,f]=size(y); 
 [g,h]=size(X*theta); 
-fprintf(" X=%d,%d theta=%d,%d y=%d,%d x*theta=%d,%d \n",a,b,c,d,e,f,g,h);
+%fprintf(" X=%d,%d theta=%d,%d y=%d,%d x*theta=%d,%d \n",a,b,c,d,e,f,g,h);
 
 prediction=sum((X*theta-y).^2)  ;  
 
 [a,b]=size(prediction); 
 
-fprintf("prediction=%d,%d \n",a,b);
+%fprintf("prediction=%d,%d \n",a,b);
 
-theta.^2 
+%theta.^2 
 
-sum(theta.^2) 
+%sum(theta.^2) 
 
 theta1=theta(2:end,:);
 
 
 [a,b]=size(theta); 
 [c,d]=size(theta1);
-fprintf(" thata=%d,%d theta1=%d,%d \n",a,b,c,d);
+%fprintf(" thata=%d,%d theta1=%d,%d \n",a,b,c,d);
 J =prediction/(2*m)+((sum(theta1.^2))*lambda)/(2*m) ;   
 
 
@@ -55,9 +55,9 @@ grad(1)=grad(1)- ((lambda*theta)/m)(1) ;
 [a,b]=size(X*theta-y);
 [c,d]=size(X');
 [e,f]=size(grad);
-fprintf(" t1=%d,%d \n",a,b);
-fprintf(" t2=%d,%d \n",c,d);
-fprintf(" t3=%d,%d \n",e,f); 
+%fprintf(" t1=%d,%d \n",a,b);
+%fprintf(" t2=%d,%d \n",c,d);
+%fprintf(" t3=%d,%d \n",e,f); 
 
 % =========================================================================
 

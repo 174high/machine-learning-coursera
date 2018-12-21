@@ -54,8 +54,32 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 
+[a,b]=size(X);
+[c,d]=size(y); 
+fprintf(" X=%d,%d y=%d,%d lambda=%d  \n",a,b,c,d,lambda);
 
 
+for t=1:m 
+
+[theta] = trainLinearReg(X(1:t,:), y(1:t), lambda);
+
+theta
+[e,f]=size(theta);
+[g,h]=size(X(1:t,:));
+[i,j]=size(y(1:t));
+[k,l]=size(Xval(1:t,:));
+[m,n]=size(yval(1:t)); 
+fprintf("theta=%d,%d X(1:%d)=%d,%d y(1:%d)=%d,%d xval(1:%d)=%d,%d yval(1:%d)=%d,%d \n",e,f,t,g,h,t,i,j,t,k,l,t,m,n);
+
+[J1,grad1] = linearRegCostFunction(X(1:t,:), y(1:t), theta, 0);
+
+[J2,grad2] = linearRegCostFunction(Xval, yval, theta, 0);
+
+fprintf("J1=%g,J2=%g \n",J1,J2);
+error_train(t)=J1;
+error_val(t)=J2;
+
+end 
 
 
 
