@@ -15,9 +15,16 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
+[a,b]=size(X);
+[c,d]=size(X_poly); 
+fprintf("poly X=%d,%d X_poly=%d,%d \n",a,b,c,d);
 
 
+for i=1:p
 
+	X_poly(:,i)=X(:,1).^i ; 
+
+end 
 
 
 % =========================================================================
