@@ -39,13 +39,29 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
+[a,b]=size(X);
+[c,d]=size(y);
+[e,f]=size(Xval);
+[g,h]=size(yval);
+
+printf(" X=%d,%d y=%d,%d Xval=%d,%d yval=%d,%d \n",a,b,c,d,e,f,g,h);
 
 
+for i=1:length(lambda_vec)
 
+	lambda = lambda_vec(i);
 
+	[theta] = trainLinearReg(X, y, lambda);
 
+	[J1,grad1] = linearRegCostFunction(X, y, theta, 0);
 
+	[J2,grad2] = linearRegCostFunction(Xval, yval, theta, 0);
 
+	error_train(i)=J1; 
+
+	error_val(i)=J2; 
+
+end 
 
 
 % =========================================================================
