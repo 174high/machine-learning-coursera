@@ -16,8 +16,12 @@ sim = 0;
 %
 %
 
+[a,b]=size(x1);
+[c,d]=size(x2);
+fprintf(" x1=%d,%d x2=%d,%d \n",a,b,c,d);
 
 
+sim=exp(-sum((x1-x2).^2)/(2*(sigma.^2))) ;
 
 
 
