@@ -23,11 +23,38 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+[a,b]=size(X);
+[c,d]=size(y);
+[e,f]=size(Xval);
+[g,h]=size(yval);
 
+fprintf(" X=%d,%d y=%d,%d Xval=%d,%d yval=%d,%d \n",a,b,c,d,e,f,g,h);
 
+a=zeros(4,1); 
 
+for i=1:4
 
+C=0.03*10^(i-1) ;
+sigma=0.01*10^(i-1) ;
 
+fprintf(" C=%g sigma=%g \n",C,sigma);
+
+model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
+
+predictions=svmPredict(model, Xval);
+
+a(i)=mean(double(predictions ~= yval)) ;
+
+end 
+
+a 
+
+[value,pos]=min(a); 
+
+C=0.03*10^(pos-1) ;
+sigma=0.01*10^(pos-1) ;
+
+fprintf(" C=%g sigma=%g \n",C,sigma);
 
 % =========================================================================
 
