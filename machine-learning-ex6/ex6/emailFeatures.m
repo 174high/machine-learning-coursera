@@ -49,9 +49,17 @@ x = zeros(n, 1);
 %
 
 
+for i=1:length(word_indices)
+	
+for j=1:n
+	
+	if j==word_indices(i)
+		x(j)=1; 
+	end 
 
+end 
 
-
+end 
 
 
 
