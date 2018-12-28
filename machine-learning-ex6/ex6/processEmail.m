@@ -51,6 +51,10 @@ email_contents = regexprep(email_contents, '[$]+', 'dollar');
 % Output the email to screen as well
 fprintf('\n==== Processed Email ====\n\n');
 
+
+
+
+
 % Process file
 l = 0;
 
@@ -97,14 +101,19 @@ while ~isempty(email_contents)
     %       str2). It will return 1 only if the two strings are equivalent.
     %
 
+    fprintf(" length of vocablist=%d \n",length(vocabList));
+    
 
 
+    for i=1:length(vocabList) 
 
-
-
-
-
-
+	if 1==strcmp(vocabList{i},str)
+		
+		fprintf(" i=%d \n",i);	
+	        word_indices = [word_indices,i];	
+	end 
+ 
+    end 
 
     % =============================================================
 
